@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="/Dynamically/assets/css/style.css?v=28f5233cabe7f55da159f30f73f880de268118b8">
+
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Devlooped.Dynamically | Dynamically</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Devlooped.Dynamically" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Create record types from dynamic data with a compatible structural shape." />
+<meta property="og:description" content="Create record types from dynamic data with a compatible structural shape." />
+<meta property="og:site_name" content="Dynamically" />
+<script type="application/ld+json">
+{"@type":"WebSite","headline":"Devlooped.Dynamically","url":"/Dynamically/","description":"Create record types from dynamic data with a compatible structural shape.","name":"Dynamically","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/devlooped/Dynamically">View on GitHub</a>
+
+          <h1 id="project_title">Dynamically</h1>
+          <h2 id="project_tagline">Create record types from dynamic data with a compatible structural shape.</h2>
+
+          
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1 id="-devloopeddynamically"><img src="https://github.com/devlooped/Dynamically/raw/main/assets/img/32.png" alt="Icon" /> Devlooped.Dynamically</h1>
+
+<p><a href="https://www.nuget.org/packages/Devlooped.Dynamically"><img src="https://img.shields.io/nuget/vpre/Devlooped.Dynamically.svg?color=royalblue" alt="Version" /></a>
+<a href="https://www.nuget.org/packages/Devlooped.Dynamically"><img src="https://img.shields.io/nuget/dt/Devlooped.Dynamically.svg?color=green" alt="Downloads" /></a>
+<a href="https://github.com/devlooped/Dynamically/blob/main/license.txt"><img src="https://img.shields.io/github/license/devlooped/Dynamically.svg?color=blue" alt="License" /></a></p>
+
+<!-- #main -->
+<p>Create record types from dynamic data with a compatible structural shape.</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>Create records for your data types:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="n">record</span> <span class="nf">Point</span><span class="p">(</span><span class="kt">int</span> <span class="n">X</span><span class="p">,</span> <span class="kt">int</span> <span class="n">Y</span><span class="p">);</span>
+
+<span class="k">public</span> <span class="n">record</span> <span class="nf">Line</span><span class="p">(</span><span class="n">Point</span> <span class="n">Start</span><span class="p">,</span> <span class="n">Point</span> <span class="n">End</span><span class="p">);</span>
+
+<span class="k">public</span> <span class="n">record</span> <span class="nf">Drawing</span><span class="p">(</span><span class="n">Line</span><span class="p">[]</span> <span class="n">Lines</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>This project will generate a <code class="language-plaintext highlighter-rouge">Dynamically</code> class with a factory method to create instances 
+of those records from a data object with a compatible shape, such as:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">var</span> <span class="n">data</span> <span class="p">=</span> <span class="k">new</span>
+<span class="p">{</span>
+    <span class="n">Lines</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span>
+    <span class="p">{</span>
+        <span class="k">new</span>
+        <span class="p">{</span>
+            <span class="n">Start</span> <span class="p">=</span> <span class="k">new</span> <span class="p">{</span> <span class="n">X</span> <span class="p">=</span> <span class="m">50</span><span class="p">,</span> <span class="n">Y</span> <span class="p">=</span> <span class="m">0</span> <span class="p">},</span>
+            <span class="n">End</span> <span class="p">=</span> <span class="k">new</span> <span class="p">{</span> <span class="n">X</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">Y</span> <span class="p">=</span> <span class="m">100</span> <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="k">new</span>
+        <span class="p">{</span>
+            <span class="n">Start</span> <span class="p">=</span> <span class="k">new</span> <span class="p">{</span> <span class="n">X</span> <span class="p">=</span> <span class="m">50</span><span class="p">,</span> <span class="n">Y</span> <span class="p">=</span> <span class="m">0</span> <span class="p">},</span>
+            <span class="n">End</span> <span class="p">=</span> <span class="k">new</span> <span class="p">{</span> <span class="n">X</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">Y</span> <span class="p">=</span> <span class="m">100</span> <span class="p">},</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="n">Drawing</span> <span class="n">drawing</span> <span class="p">=</span> <span class="n">Dynamically</span><span class="p">.</span><span class="n">Create</span><span class="p">&lt;</span><span class="n">Drawing</span><span class="p">&gt;(</span><span class="n">data</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>In adition to a dynamic object (or an <a href="https://learn.microsoft.com/en-us/dotnet/api/system.dynamic.expandoobject?view=net-7.0">ExpandoObject</a>, 
+for example), you can also pass in objects from other strongly typed values that come 
+from a different assembly as long as it has the same structure. This allows fast 
+in-memory object mapping without any serialization or extra allocations.</p>
+
+<p>The factory works too for Newtonsoft.Json deserialized objects, for example:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// elsewhere, you got an in-memory Json.NET object model, perhaps with:</span>
+<span class="kt">dynamic</span> <span class="n">data</span> <span class="p">=</span> <span class="n">JsonConvert</span><span class="p">.</span><span class="nf">DeserializeObject</span><span class="p">(</span><span class="n">json</span><span class="p">);</span>
+
+<span class="c1">// Subsequently, you can turn it into your strongly-typed records:</span>
+<span class="n">Drawing</span> <span class="n">drawing</span> <span class="p">=</span> <span class="n">Dynamically</span><span class="p">.</span><span class="n">Create</span><span class="p">&lt;</span><span class="n">Drawing</span><span class="p">&gt;(</span><span class="n">data</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>You can also optionally customize the mapping for specific records by providing accessible 
+static <code class="language-plaintext highlighter-rouge">Create</code> or <code class="language-plaintext highlighter-rouge">CreateMany</code> factory methods in your records, so you can 
+selectively customize the mapping by providing them as needed in specific cases. 
+For example:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">partial</span> <span class="n">record</span> <span class="n">Drawing</span>
+<span class="p">{</span>
+    <span class="c1">// Customize creation of a single Drawing from a dynamic value</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">Drawing</span> <span class="nf">Create</span><span class="p">(</span><span class="kt">dynamic</span> <span class="k">value</span><span class="p">);</span>
+    <span class="c1">// Customize creation of a list of Drawings from a dynamic value</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Drawing</span><span class="p">&gt;</span> <span class="nf">CreateMany</span><span class="p">(</span><span class="kt">dynamic</span> <span class="k">value</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="how-it-works">How It Works</h2>
+
+<p>This package analyzes (at compile-time) the shape of your records and creates a 
+factory that create instances from a dynamic object. For this, it just accesses 
+the properties of the dynamic object and passes them to the record constructor 
+(or its properties). This means that the data must have (at least) the expected 
+values for the conversion to succeed.</p>
+
+<p>The static <code class="language-plaintext highlighter-rouge">Dynamically.Create</code> generic method is also generated at compile time 
+and contains a switch statement that dispatches to the correct factory based on 
+the generic argument specified.</p>
+
+<p>In addition, if the records are partial, you also get static <code class="language-plaintext highlighter-rouge">Create</code> and 
+<code class="language-plaintext highlighter-rouge">CreateMany</code> static methods on the record type itself, for added convenience, 
+such as:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">partial</span> <span class="n">record</span> <span class="n">Drawing</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">Drawing</span> <span class="nf">Create</span><span class="p">(</span><span class="kt">dynamic</span> <span class="k">value</span><span class="p">);</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Drawing</span><span class="p">&gt;</span> <span class="nf">CreateMany</span><span class="p">(</span><span class="kt">dynamic</span> <span class="k">value</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>NOTE: these will only be provided if your record doesn’t already have them.</p>
+</blockquote>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>This package is not meant to be a full-fledged object mapper. For that, you can 
+use <a href="https://automapper.org/">AutoMapper</a>, for example, which is much more flexible 
+and has excelent <a href="https://github.com/kzu/MappingBenchmark">performance characteristics</a>.
+This package does provide very fast in-memory object mapping that is far faster and 
+cheaper than going through any sort of serialization.</p>
+
+<p>As mentioned, the provided factories do not provide backwards-compatibility: if 
+you add a property or constructor argument to the record, the factory will fail 
+for payloads without it.</p>
+
+<!-- #main -->
+
+<!-- #ci -->
+<h2 id="dogfooding">Dogfooding</h2>
+
+<p><a href="https://pkg.kzu.io/index.json"><img src="https://img.shields.io/endpoint?url=https://shields.kzu.io/vpre/Devlooped.Dynamically/main&amp;label=nuget.ci&amp;color=brightgreen" alt="CI Version" /></a>
+<a href="https://github.com/devlooped/Dynamically/actions"><img src="https://github.com/devlooped/Dynamically/workflows/build/badge.svg?branch=main" alt="Build" /></a></p>
+
+<p>We also produce CI packages from branches and pull requests so you can dogfood builds as quickly as they are produced.</p>
+
+<p>The CI feed is <code class="language-plaintext highlighter-rouge">https://pkg.kzu.io/index.json</code>.</p>
+
+<p>The versioning scheme for packages is:</p>
+
+<ul>
+  <li>PR builds: <em>42.42.42-pr</em><code class="language-plaintext highlighter-rouge">[NUMBER]</code></li>
+  <li>Branch builds: <em>42.42.42-</em><code class="language-plaintext highlighter-rouge">[BRANCH]</code>.<code class="language-plaintext highlighter-rouge">[COMMITS]</code></li>
+</ul>
+
+<!-- #sponsors -->
+<!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
+<h1 id="sponsors">Sponsors</h1>
+
+<!-- sponsors.md -->
+<p><a href="https://github.com/clarius"><img src="https://raw.githubusercontent.com/devlooped/sponsors/main/.github/avatars/clarius.png" alt="Clarius Org" title="Clarius Org" /></a>
+<a href="https://github.com/MelbourneDeveloper"><img src="https://raw.githubusercontent.com/devlooped/sponsors/main/.github/avatars/MelbourneDeveloper.png" alt="Christian Findlay" title="Christian Findlay" /></a>
+<a href="https://github.com/augustoproiete"><img src="https://raw.githubusercontent.com/devlooped/sponsors/main/.github/avatars/augustoproiete.png" alt="C. Augusto Proiete" title="C. Augusto Proiete" /></a>
+<a href="https://github.com/KirillOsenkov"><img src="https://raw.githubusercontent.com/devlooped/sponsors/main/.github/avatars/KirillOsenkov.png" alt="Kirill Osenkov" title="Kirill Osenkov" /></a>
+<a href="https://github.com/MFB-Technologies-Inc"><img src="https://raw.githubusercontent.com/devlooped/sponsors/main/.github/avatars/MFB-Technologies-Inc.png" alt="MFB Technologies, Inc." title="MFB Technologies, Inc." /></a>
+<a href="https://github.com/sandrock"><img src="https://raw.githubusercontent.com/devlooped/sponsors/main/.github/avatars/sandrock.png" alt="SandRock" title="SandRock" /></a>
+<a href="https://github.com/agocke"><img src="https://raw.githubusercontent.com/devlooped/sponsors/main/.github/avatars/agocke.png" alt="Andy Gocke" title="Andy Gocke" /></a>
+<a href="https://github.com/shahzadhuq"><img src="https://raw.githubusercontent.com/devlooped/sponsors/main/.github/avatars/shahzadhuq.png" alt="Shahzad Huq" title="Shahzad Huq" /></a></p>
+
+<!-- sponsors.md -->
+
+<p><a href="https://github.com/sponsors/devlooped"><img src="https://raw.githubusercontent.com/devlooped/sponsors/main/sponsor.png" alt="Sponsor this project" title="Sponsor this project" /></a>
+ </p>
+
+<p><a href="https://github.com/sponsors">Learn more about GitHub Sponsors</a></p>
+
+<!-- https://github.com/devlooped/sponsors/raw/main/footer.md -->
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        
+        <p class="copyright">Dynamically maintained by <a href="https://github.com/devlooped">devlooped</a></p>
+        
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>
