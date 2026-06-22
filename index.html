@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="/Dynamically/assets/css/style.css?v=583697bb0e3ce4454984a4114d07687e8b8b7f58">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Devlooped.Dynamically | Dynamically</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="Devlooped.Dynamically" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Instantiate record types from dynamic data with compatible structural shapes, in-memory with no reflection or serialization, via compile-time source generators." />
+<meta property="og:description" content="Instantiate record types from dynamic data with compatible structural shapes, in-memory with no reflection or serialization, via compile-time source generators." />
+<meta property="og:site_name" content="Dynamically" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Devlooped.Dynamically" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","description":"Instantiate record types from dynamic data with compatible structural shapes, in-memory with no reflection or serialization, via compile-time source generators.","headline":"Devlooped.Dynamically","name":"Dynamically","url":"/Dynamically/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Dynamically/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          
+            <a id="forkme_banner" href="https://github.com/devlooped/Dynamically">View on GitHub</a>
+          
+
+          <h1 id="project_title">Dynamically</h1>
+          <h2 id="project_tagline">Instantiate record types from dynamic data with compatible structural shapes, in-memory with no reflection or serialization, via compile-time source generators.</h2>
+
+          
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1 id="-devloopeddynamically"><img src="https://github.com/devlooped/Dynamically/raw/main/assets/img/32.png" alt="Icon" /> Devlooped.Dynamically</h1>
+
+<p><a href="https://www.nuget.org/packages/Devlooped.Dynamically"><img src="https://img.shields.io/nuget/vpre/Devlooped.Dynamically.svg?color=royalblue" alt="Version" /></a>
+<a href="https://www.nuget.org/packages/Devlooped.Dynamically"><img src="https://img.shields.io/nuget/dt/Devlooped.Dynamically.svg?color=green" alt="Downloads" /></a>
+<a href="https://github.com/devlooped/Dynamically/blob/main/license.txt"><img src="https://img.shields.io/github/license/devlooped/Dynamically.svg?color=blue" alt="License" /></a></p>
+
+<!-- #main -->
+<p>Instantiate record types from dynamic data with compatible structural shapes, 
+in-memory with no reflection or serialization, via compile-time source generators.</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>Create records for your data types:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="n">record</span> <span class="nf">Point</span><span class="p">(</span><span class="kt">int</span> <span class="n">X</span><span class="p">,</span> <span class="kt">int</span> <span class="n">Y</span><span class="p">);</span>
+
+<span class="k">public</span> <span class="n">record</span> <span class="nf">Line</span><span class="p">(</span><span class="n">Point</span> <span class="n">Start</span><span class="p">,</span> <span class="n">Point</span> <span class="n">End</span><span class="p">);</span>
+
+<span class="k">public</span> <span class="n">record</span> <span class="nf">Drawing</span><span class="p">(</span><span class="n">Line</span><span class="p">[]</span> <span class="n">Lines</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>This project will generate a <code class="language-plaintext highlighter-rouge">Dynamically</code> class with a factory method to create instances 
+of those records from a data object with a compatible shape, such as:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">var</span> <span class="n">data</span> <span class="p">=</span> <span class="k">new</span>
+<span class="p">{</span>
+    <span class="n">Lines</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span>
+    <span class="p">{</span>
+        <span class="k">new</span>
+        <span class="p">{</span>
+            <span class="n">Start</span> <span class="p">=</span> <span class="k">new</span> <span class="p">{</span> <span class="n">X</span> <span class="p">=</span> <span class="m">50</span><span class="p">,</span> <span class="n">Y</span> <span class="p">=</span> <span class="m">0</span> <span class="p">},</span>
+            <span class="n">End</span> <span class="p">=</span> <span class="k">new</span> <span class="p">{</span> <span class="n">X</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">Y</span> <span class="p">=</span> <span class="m">100</span> <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="k">new</span>
+        <span class="p">{</span>
+            <span class="n">Start</span> <span class="p">=</span> <span class="k">new</span> <span class="p">{</span> <span class="n">X</span> <span class="p">=</span> <span class="m">50</span><span class="p">,</span> <span class="n">Y</span> <span class="p">=</span> <span class="m">0</span> <span class="p">},</span>
+            <span class="n">End</span> <span class="p">=</span> <span class="k">new</span> <span class="p">{</span> <span class="n">X</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">Y</span> <span class="p">=</span> <span class="m">100</span> <span class="p">},</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="n">Drawing</span> <span class="n">drawing</span> <span class="p">=</span> <span class="n">Dynamically</span><span class="p">.</span><span class="n">Create</span><span class="p">&lt;</span><span class="n">Drawing</span><span class="p">&gt;(</span><span class="n">data</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>In adition to a dynamic object (or an <a href="https://learn.microsoft.com/en-us/dotnet/api/system.dynamic.expandoobject?view=net-7.0">ExpandoObject</a>, 
+for example), you can also pass in objects from other strongly typed values that come 
+from a different assembly as long as it has the same structure. This allows fast 
+in-memory object mapping without any serialization or extra allocations.</p>
+
+<p>The factory works too for Newtonsoft.Json deserialized objects, for example:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// elsewhere, you got an in-memory Json.NET object model, perhaps with:</span>
+<span class="kt">dynamic</span> <span class="n">data</span> <span class="p">=</span> <span class="n">JsonConvert</span><span class="p">.</span><span class="nf">DeserializeObject</span><span class="p">(</span><span class="n">json</span><span class="p">);</span>
+
+<span class="c1">// Subsequently, you can turn it into your strongly-typed records:</span>
+<span class="n">Drawing</span> <span class="n">drawing</span> <span class="p">=</span> <span class="n">Dynamically</span><span class="p">.</span><span class="n">Create</span><span class="p">&lt;</span><span class="n">Drawing</span><span class="p">&gt;(</span><span class="n">data</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>You can also optionally customize the mapping for specific records by providing accessible 
+static <code class="language-plaintext highlighter-rouge">Create</code> or <code class="language-plaintext highlighter-rouge">CreateMany</code> factory methods in your records, so you can 
+selectively customize the mapping by providing them as needed in specific cases. 
+For example:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">partial</span> <span class="n">record</span> <span class="n">Drawing</span>
+<span class="p">{</span>
+    <span class="c1">// Customize creation of a single Drawing from a dynamic value</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">Drawing</span> <span class="nf">Create</span><span class="p">(</span><span class="kt">dynamic</span> <span class="k">value</span><span class="p">);</span>
+    <span class="c1">// Customize creation of a list of Drawings from a dynamic value</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Drawing</span><span class="p">&gt;</span> <span class="nf">CreateMany</span><span class="p">(</span><span class="kt">dynamic</span> <span class="k">value</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="how-it-works">How It Works</h2>
+
+<p>This package analyzes (at compile-time) the shape of your records and creates a 
+factory that create instances from a dynamic object. For this, it just accesses 
+the properties of the dynamic object and passes them to the record constructor 
+(or its properties). This means that the data must have (at least) the expected 
+values for the conversion to succeed.</p>
+
+<p>The static <code class="language-plaintext highlighter-rouge">Dynamically.Create</code> generic method is also generated at compile time 
+and contains a switch statement that dispatches to the correct factory based on 
+the generic argument specified.</p>
+
+<p>In addition, if the records are partial, you also get static <code class="language-plaintext highlighter-rouge">Create</code> and 
+<code class="language-plaintext highlighter-rouge">CreateMany</code> static methods on the record type itself, for added convenience, 
+such as:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">partial</span> <span class="n">record</span> <span class="n">Drawing</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">Drawing</span> <span class="nf">Create</span><span class="p">(</span><span class="kt">dynamic</span> <span class="k">value</span><span class="p">);</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Drawing</span><span class="p">&gt;</span> <span class="nf">CreateMany</span><span class="p">(</span><span class="kt">dynamic</span> <span class="k">value</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>NOTE: these will only be provided if your record doesn’t already have them.</p>
+</blockquote>
+
+<h3 id="example">Example</h3>
+
+<p>For the above example with <code class="language-plaintext highlighter-rouge">Drawing/Line/Point</code> records, you’d get a generated 
+<code class="language-plaintext highlighter-rouge">Dynamically</code> type like:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">static</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">Dynamically</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">partial</span> <span class="n">T</span> <span class="n">Create</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kt">dynamic</span> <span class="n">data</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">typeof</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="k">switch</span>
+        <span class="p">{</span>
+            <span class="n">Type</span> <span class="n">t</span> <span class="n">when</span> <span class="n">t</span> <span class="p">==</span> <span class="k">typeof</span><span class="p">(</span><span class="n">Drawing</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="n">Drawing</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="n">data</span><span class="p">),</span>
+            <span class="n">_</span> <span class="p">=&gt;</span> <span class="k">throw</span> <span class="k">new</span> <span class="nf">NotSupportedException</span><span class="p">(),</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If the <code class="language-plaintext highlighter-rouge">Drawing</code> record was partial, the <code class="language-plaintext highlighter-rouge">Create</code> method would look like:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">partial</span> <span class="n">record</span> <span class="n">Drawing</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="n">Drawing</span> <span class="nf">Create</span><span class="p">(</span><span class="kt">dynamic</span> <span class="k">value</span><span class="p">)</span>
+            <span class="p">=&gt;</span> <span class="n">DrawingFactory</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="k">value</span><span class="p">);</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>With the <code class="language-plaintext highlighter-rouge">DrawingFactory</code> class being generated as:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">static</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">DrawingFactory</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">Drawing</span> <span class="nf">Create</span><span class="p">(</span><span class="kt">dynamic</span> <span class="k">value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">value</span> <span class="k">is</span> <span class="k">null</span><span class="p">)</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">ArgumentNullException</span><span class="p">(</span><span class="k">nameof</span><span class="p">(</span><span class="k">value</span><span class="p">));</span>
+
+        <span class="k">try</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nf">Drawing</span><span class="p">(</span><span class="n">Line</span><span class="p">.</span><span class="nf">CreateMany</span><span class="p">(</span><span class="k">value</span><span class="p">.</span><span class="n">Lines</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="k">catch</span> <span class="p">(</span><span class="n">RuntimeBinderException</span> <span class="n">e</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">valueAsm</span> <span class="p">=</span> <span class="p">((</span><span class="kt">object</span><span class="p">)</span><span class="k">value</span><span class="p">).</span><span class="nf">GetType</span><span class="p">().</span><span class="n">Assembly</span><span class="p">.</span><span class="nf">GetName</span><span class="p">();</span>
+            <span class="kt">var</span> <span class="n">thisAsm</span> <span class="p">=</span> <span class="k">typeof</span><span class="p">(</span><span class="n">DrawingFactory</span><span class="p">).</span><span class="n">Assembly</span><span class="p">.</span><span class="nf">GetName</span><span class="p">();</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">ArgumentException</span><span class="p">(</span>
+                <span class="s">$"Incompatible </span><span class="p">{</span><span class="k">nameof</span><span class="p">(</span><span class="n">Drawing</span><span class="p">)}</span><span class="s"> value. Cannot convert value from '</span><span class="p">{</span><span class="n">valueAsm</span><span class="p">.</span><span class="n">Name</span><span class="p">}</span><span class="s">, Version=</span><span class="p">{</span><span class="n">valueAsm</span><span class="p">.</span><span class="n">Version</span><span class="p">}</span><span class="s">' to '</span><span class="p">{</span><span class="n">thisAsm</span><span class="p">.</span><span class="n">Name</span><span class="p">}</span><span class="s">, Version=</span><span class="p">{</span><span class="n">thisAsm</span><span class="p">.</span><span class="n">Version</span><span class="p">}</span><span class="s">'."</span><span class="p">,</span>
+                <span class="k">nameof</span><span class="p">(</span><span class="k">value</span><span class="p">),</span> <span class="n">e</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Drawing</span><span class="p">&gt;</span> <span class="nf">CreateMany</span><span class="p">(</span><span class="kt">dynamic</span> <span class="k">value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Drawing</span><span class="p">&gt;();</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="k">value</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">result</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="nf">Create</span><span class="p">(</span><span class="n">item</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">Line</code> factory method would look very similar, instantiating a many points, 
+with perhaps <code class="language-plaintext highlighter-rouge">Point</code> being the most interesting:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">static</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">PointFactory</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">Point</span> <span class="nf">Create</span><span class="p">(</span><span class="kt">dynamic</span> <span class="k">value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">value</span> <span class="k">is</span> <span class="k">null</span><span class="p">)</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">ArgumentNullException</span><span class="p">(</span><span class="k">nameof</span><span class="p">(</span><span class="k">value</span><span class="p">));</span>
+
+        <span class="k">try</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nf">Point</span><span class="p">((</span><span class="k">global</span><span class="p">::</span><span class="n">System</span><span class="p">.</span><span class="n">Int32</span><span class="p">)</span><span class="k">value</span><span class="p">.</span><span class="n">X</span><span class="p">,</span> <span class="p">(</span><span class="k">global</span><span class="p">::</span><span class="n">System</span><span class="p">.</span><span class="n">Int32</span><span class="p">)</span><span class="k">value</span><span class="p">.</span><span class="n">Y</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">catch</span> <span class="p">(</span><span class="n">RuntimeBinderException</span> <span class="n">e</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">valueAsm</span> <span class="p">=</span> <span class="p">((</span><span class="kt">object</span><span class="p">)</span><span class="k">value</span><span class="p">).</span><span class="nf">GetType</span><span class="p">().</span><span class="n">Assembly</span><span class="p">.</span><span class="nf">GetName</span><span class="p">();</span>
+            <span class="kt">var</span> <span class="n">thisAsm</span> <span class="p">=</span> <span class="k">typeof</span><span class="p">(</span><span class="n">PointFactory</span><span class="p">).</span><span class="n">Assembly</span><span class="p">.</span><span class="nf">GetName</span><span class="p">();</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">ArgumentException</span><span class="p">(</span>
+                <span class="s">$"Incompatible </span><span class="p">{</span><span class="k">nameof</span><span class="p">(</span><span class="n">Point</span><span class="p">)}</span><span class="s"> value. Cannot convert value from '</span><span class="p">{</span><span class="n">valueAsm</span><span class="p">.</span><span class="n">Name</span><span class="p">}</span><span class="s">, Version=</span><span class="p">{</span><span class="n">valueAsm</span><span class="p">.</span><span class="n">Version</span><span class="p">}</span><span class="s">' to '</span><span class="p">{</span><span class="n">thisAsm</span><span class="p">.</span><span class="n">Name</span><span class="p">}</span><span class="s">, Version=</span><span class="p">{</span><span class="n">thisAsm</span><span class="p">.</span><span class="n">Version</span><span class="p">}</span><span class="s">'."</span><span class="p">,</span>
+                <span class="k">nameof</span><span class="p">(</span><span class="k">value</span><span class="p">),</span> <span class="n">e</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Point</span><span class="p">&gt;</span> <span class="nf">CreateMany</span><span class="p">(</span><span class="kt">dynamic</span> <span class="k">value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Point</span><span class="p">&gt;();</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="k">value</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">result</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="nf">Create</span><span class="p">(</span><span class="n">item</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>As you can see, the factory methods are very simple and straightforward, and have 
+great run-time performance characteristics since there is absolutely no reflection, 
+and the built-in C# dynamic infrastructure takes care of doing the heavy lifting. 
+The generated code is basically what you’d write manually to do the casting of the 
+entire object hierarchy.</p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>This package is not meant to be a full-fledged object mapper. For that, you can 
+use <a href="https://automapper.org/">AutoMapper</a>, for example, which is much more flexible 
+and has excelent <a href="https://github.com/kzu/MappingBenchmark">performance characteristics</a>.
+This package does provide very fast in-memory object mapping that is far faster and 
+cheaper than going through any sort of serialization.</p>
+
+<p>As mentioned, the provided factories do not provide backwards-compatibility: if 
+you add a property or constructor argument to the record, the factory will fail 
+for payloads without it.</p>
+
+<!-- #main -->
+
+<!-- #ci -->
+<h2 id="dogfooding">Dogfooding</h2>
+
+<p><a href="https://pkg.kzu.app/index.json"><img src="https://img.shields.io/endpoint?url=https://shields.kzu.app/vpre/Devlooped.Dynamically/main&amp;label=nuget.ci&amp;color=brightgreen" alt="CI Version" /></a>
+<a href="https://github.com/devlooped/Dynamically/actions"><img src="https://github.com/devlooped/Dynamically/workflows/build/badge.svg?branch=main" alt="Build" /></a></p>
+
+<p>We also produce CI packages from branches and pull requests so you can dogfood builds as quickly as they are produced.</p>
+
+<p>The CI feed is <code class="language-plaintext highlighter-rouge">https://pkg.kzu.app/index.json</code>.</p>
+
+<p>The versioning scheme for packages is:</p>
+
+<ul>
+  <li>PR builds: <em>42.42.42-pr</em><code class="language-plaintext highlighter-rouge">[NUMBER]</code></li>
+  <li>Branch builds: <em>42.42.42-</em><code class="language-plaintext highlighter-rouge">[BRANCH]</code>.<code class="language-plaintext highlighter-rouge">[COMMITS]</code></li>
+</ul>
+
+<!-- #sponsors -->
+<!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
+<h1 id="sponsors">Sponsors</h1>
+
+<!-- sponsors.md -->
+<p><a href="https://github.com/clarius"><img src="https://avatars.githubusercontent.com/u/71888636?v=4&amp;s=39" alt="Clarius Org" title="Clarius Org" /></a>
+<a href="https://github.com/MFB-Technologies-Inc"><img src="https://avatars.githubusercontent.com/u/87181630?v=4&amp;s=39" alt="MFB Technologies, Inc." title="MFB Technologies, Inc." /></a>
+<a href="https://github.com/sandrock"><img src="https://avatars.githubusercontent.com/u/321868?u=99e50a714276c43ae820632f1da88cb71632ec97&amp;v=4&amp;s=39" alt="SandRock" title="SandRock" /></a>
+<a href="https://github.com/drivenet"><img src="https://avatars.githubusercontent.com/u/15047123?v=4&amp;s=39" alt="DRIVE.NET, Inc." title="DRIVE.NET, Inc." /></a>
+<a href="https://github.com/Keflon"><img src="https://avatars.githubusercontent.com/u/16598898?u=64416b80caf7092a885f60bb31612270bffc9598&amp;v=4&amp;s=39" alt="Keith Pickford" title="Keith Pickford" /></a>
+<a href="https://github.com/tbolon"><img src="https://avatars.githubusercontent.com/u/127185?u=7f50babfc888675e37feb80851a4e9708f573386&amp;v=4&amp;s=39" alt="Thomas Bolon" title="Thomas Bolon" /></a>
+<a href="https://github.com/kfrancis"><img src="https://avatars.githubusercontent.com/u/67574?u=3991fb983e1c399edf39aebc00a9f9cd425703bd&amp;v=4&amp;s=39" alt="Kori Francis" title="Kori Francis" /></a>
+<a href="https://github.com/rbnswartz"><img src="https://avatars.githubusercontent.com/u/724704?u=2076fe336f9f6ad678009f1595cbea434b0c5a41&amp;v=4&amp;s=39" alt="Reuben Swartz" title="Reuben Swartz" /></a>
+<a href="https://github.com/jfoshee"><img src="https://avatars.githubusercontent.com/u/480334?v=4&amp;s=39" alt="Jacob Foshee" title="Jacob Foshee" /></a>
+<a href="https://github.com/eajhnsn1"><img src="https://avatars.githubusercontent.com/u/33566379?u=bf62e2b46435a267fa246a64537870fd2449410f&amp;v=4&amp;s=39" alt="" title="&quot;)](https://github.com/Mrxx99)
+[![Eric Johnson](https://avatars.githubusercontent.com/u/26369281?u=41b560c2bc493149b32d384b960e0948c78767ab&amp;v=4&amp;s=39 &quot;Eric Johnson" /></a>
+<a href="https://github.com/Jonathan-Hickey"><img src="https://avatars.githubusercontent.com/u/5510103?u=98dcfbef3f32de629d30f1f418a095bf09e14891&amp;v=4&amp;s=39" alt="Jonathan " title="Jonathan " /></a>
+<a href="https://github.com/KenBonny"><img src="https://avatars.githubusercontent.com/u/6417376?u=569af445b6f387917029ffb5129e9cf9f6f68421&amp;v=4&amp;s=39" alt="Ken Bonny" title="Ken Bonny" /></a>
+<a href="https://github.com/SimonCropp"><img src="https://avatars.githubusercontent.com/u/122666?v=4&amp;s=39" alt="Simon Cropp" title="Simon Cropp" /></a>
+<a href="https://github.com/agileworks-eu"><img src="https://avatars.githubusercontent.com/u/5989304?v=4&amp;s=39" alt="agileworks-eu" title="agileworks-eu" /></a>
+<a href="https://github.com/arsdragonfly"><img src="https://avatars.githubusercontent.com/u/4067473?v=4&amp;s=39" alt="Zheyu Shen" title="Zheyu Shen" /></a>
+<a href="https://github.com/vezel-dev"><img src="https://avatars.githubusercontent.com/u/87844133?v=4&amp;s=39" alt="Vezel" title="Vezel" /></a>
+<a href="https://github.com/ChilliCream"><img src="https://avatars.githubusercontent.com/u/16239022?v=4&amp;s=39" alt="ChilliCream" title="ChilliCream" /></a>
+<a href="https://github.com/4OTC"><img src="https://avatars.githubusercontent.com/u/68428092?v=4&amp;s=39" alt="4OTC" title="4OTC" /></a>
+<a href="https://github.com/DominicSchell"><img src="https://avatars.githubusercontent.com/u/66068846?u=0a5c5e2e7d90f15ea657bc660f175605935c5bea&amp;v=4&amp;s=39" alt="domischell" title="domischell" /></a>
+<a href="https://github.com/adalon"><img src="https://avatars.githubusercontent.com/u/2027083?u=129cf516d99f5cb2fd0f4a0787a069f3446b7522&amp;v=4&amp;s=39" alt="Adrian Alonso" title="Adrian Alonso" /></a>
+<a href="https://github.com/torutek"><img src="https://avatars.githubusercontent.com/u/33917059?v=4&amp;s=39" alt="torutek" title="torutek" /></a>
+<a href="https://github.com/mccaffers"><img src="https://avatars.githubusercontent.com/u/16667079?u=c0daa64bb5c1b572130e05ae2b6f609ecc912d4d&amp;v=4&amp;s=39" alt="Ryan McCaffery" title="Ryan McCaffery" /></a>
+<a href="https://github.com/SeikaLogiciel"><img src="https://avatars.githubusercontent.com/u/2564602?v=4&amp;s=39" alt="Seika Logiciel" title="Seika Logiciel" /></a>
+<a href="https://github.com/wizardness"><img src="https://avatars.githubusercontent.com/devlooped-user?s=39" alt="Andrew Grant" title="Andrew Grant" /></a>
+<a href="https://github.com/eska-gmbh"><img src="https://avatars.githubusercontent.com/devlooped-team?s=39" alt="eska-gmbh" title="eska-gmbh" /></a>
+<a href="https://github.com/geodata-no"><img src="https://avatars.githubusercontent.com/u/5946299?v=4&amp;s=39" alt="Geodata AS" title="Geodata AS" /></a></p>
+
+<!-- sponsors.md -->
+<p><a href="https://github.com/sponsors/devlooped"><img src="https://avatars.githubusercontent.com/devlooped-sponsor?s=118" alt="Sponsor this project" title="Sponsor this project" /></a></p>
+
+<p><a href="https://github.com/sponsors">Learn more about GitHub Sponsors</a></p>
+
+<!-- https://github.com/devlooped/sponsors/raw/main/footer.md -->
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        
+        <p class="copyright">Dynamically maintained by <a href="https://github.com/devlooped">devlooped</a></p>
+        
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+  </body>
+</html>
